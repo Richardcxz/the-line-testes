@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Line</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swapYungJakesNewHandwriting-Regular.ttf" rel="stylesheet">
+	<link href="cover.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/x-icon" href="1x1.png">
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    
+</head>
+<body id="pagdark" class="d-flex h-100 text-center text-black">
+
+	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+	<script>function hideLoading() {document.getElementById("loading").style.display = "none";}setTimeout(hideLoading, 500)</script>
+   
+	<div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
+		<header class="mb-auto">
+		</header>
+	<main class="px-3 text-center">
+		<br><br><br><br><br><br><br><br><br><br>
+        <h1 id="tit" style="font-family: yungjakes; font-size: 85px" >the line</h1>
+        <p id="descr" class="animate__animated animate__fadeIn animate__delay-2s" style="font-family: segoe UI light; font-size: 20px">UM GERENCIADOR DE PROJETOS SIMPLIFICADO</p>
+		<br><br><br>
+
+	<div class="box">
+		<a class="logar disabled" href="#divOne">&nbsp&nbspLogin&nbsp&nbsp</a>
+	</div>
+	<div class="overlay" id="divOne">
+		<div class="wrapper">
+			<h2>Insira os dados</h2><a class="close" href="#">&times;</a>
+			<div class="content">
+				<div class="container">
+					<form>
+						<label style="color: black;">Usuário</label>
+						<input id="usu" placeholder="Seu usuário" type="text">
+						<label style="color: black;">Senha</label>
+						<input id="sen" placeholder="Sua senha" type="password">
+						<input id="salvar3" class="logar2" onclick="logar()" type="button" value="Entrar">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="box">
+		<a class="logar" href="#divTwo">Cadastro</a>
+	</div>
+	<div class="overlay" id="divTwo">
+		<div class="wrapper">
+			<h2>Insira os dados</h2><a class="close" href="#">&times;</a>
+			<div class="content">
+				<div class="container">
+					<form>
+						<label style="color: black;">Insira um nome de Usuário</label>
+						<input id="usucad" placeholder="Seu usuário" type="text">
+						<label style="color: black;">Insira uma Senha</label>
+						<input id="sencad" placeholder="Sua senha" type="text">
+						<label style="color: black;">Insira um E-mail válido</label>
+						<input id="emailcad" placeholder="exemplo@provedor.com" type="text" value="">
+						<br>
+						<input id="salvar2" class="logar2" onclick="cadastrar()" type="button" value="Cadastrar">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<br><br><br><br><br><br><br><br><br>
+	<footer id="foo" class="mt-auto text-white-50">
+		<p>by Richard</p>
+	  </footer>
+
+	</div>
+
+<script>
+
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', '/verificar-login');
+		xhr.onload = function() {
+		if (xhr.status === 200 && xhr.responseText === 'true') {
+		alert("vc ja esta logado!")
+			setTimeout(function() {
+				location.replace("index3.html");
+			}, 200);
+		  } else {
+			
+		  }
+		};
+		xhr.send();
+		
+		
+</script>
+
+<script>
+
+function logar() {
+	const salvarBotao3 = document.getElementById('salvar3');
+		salvarBotao3.addEventListener('click', function() {
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/fazer-login');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  location.replace("/index3.html");
+			} else {
+			  alert('Erro ao logar, verifique as informações inseridas.');
+			}
+		  };
+		  const dados = 'usu=' + encodeURIComponent(document.getElementById('usu').value) +
+              '&sen=' + encodeURIComponent(document.getElementById('sen').value);
+			  
+		  xhr.send(dados);
+		});
+	let usuv = document.getElementById('usu').value
+	let senv = document.getElementById('sen').value
+    if(usuv == "" || senv == ""){
+		window.alert("Erro! Um ou mais campos estão vazios.");
+}
+}
+function cadastrar() {
+	var usuario = document.getElementById("usucad").value;
+	var senha = document.getElementById("sencad").value;
+	var email = document.getElementById("emailcad").value;
+	var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	if(usuario == "" || senha == "" || email == ""){
+		window.alert("Erro! Um ou mais campos estão vazios.");
+}
+
+if(emailcad.value.match(validRegex)){
+if(usuario != "" && senha != ""){
+
+		const salvarBotao2 = document.getElementById('salvar2');
+		salvarBotao2.addEventListener('click', function() {
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/salvar-conta');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  alert(xhr.responseText);
+			} 
+		  };
+		  const dados = 'usuario=' + encodeURIComponent(document.getElementById('usucad').value) +
+              '&email=' + encodeURIComponent(document.getElementById('emailcad').value) +
+              '&senha=' + encodeURIComponent(document.getElementById('sencad').value);
+			  
+		  xhr.send(dados);
+		  setTimeout(function() {
+			location.replace("index.html");
+		  }, 300);
+		  
+		});
+
+}
+}
+else{
+window.alert("E-Mail inválido!");
+}
+}
+	
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+<script>
+  $(document).ready(function()  {
+
+
+	$("#goodbtn").parent().on("click","#goodbtn", function () {
+
+       $("#pagdark").removeClass('bg-dark').addClass('bg-white');
+
+	   $("#tit").css("color", "black");
+	   $("#descr").css("color", "black");
+	   $("#foo").css("color", "black");
+	   $("#foo").removeClass('text-white-50').addClass('text-black-50');
+
+	   $('#pagdark').attr("id", "pagwhite");
+	   $('#goodbtn').attr("id", "badbtn");
+       });
+
+	$("#goodbtn").parent().on("click","#badbtn",function () {
+
+	$("#pagwhite").removeClass('bg-white').addClass('bg-dark');
+
+	$("#tit").css("color", "white");
+	$("#descr").css("color", "white");
+	$("#foo").removeClass('text-black-50').addClass('text-white-50');
+
+	$('#pagwhite').attr("id", "pagdark");
+	$('#badbtn').attr("id", "goodbtn");
+
+	});
+
+	$('.bot').on('click',function(e){
+    $(this).find('i').addClass('fa-check-circle');
+  $(this).find('a').addClass('chk');
+    $(this).find('i').removeClass('fa-circle');
+    $('.bot').css('pointer-events','none');
+	$('.bot').removeClass('shake'); setTimeout(function(){$('.bot').addClass('shake'); }, 400); return false;
+});
+
+});
+
+</script>	
+</main>
+</body>
+</html>

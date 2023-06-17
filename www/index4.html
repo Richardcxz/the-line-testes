@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projeto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+	<link href="cover.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/x-icon" href="1x1.png">
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    
+</head>
+<body id="pagdark" class="d-flex h-100 text-center text-black">
+
+	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+	<script>function hideLoading() {document.getElementById("loading").style.display = "none";}setTimeout(hideLoading, 500)</script>
+   
+	<div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
+		<header class="mb-auto">
+		</header>
+	<main class="px-3 text-center">
+		<img src="back.png" style="width: 55px; height: 55px; position: fixed; top: 0; left: 0; 
+		margin:8px;" onclick="window.location.href='index2.html'">
+
+		<h1 id="prjnome" class="dashboard-title" id="tit" style="font-family: yungjakes; font-size: 85px;">Nome do Projeto</h1>
+		<p id="prjdesc" style="font-family: segoe UI light; font-size: 20px; word-wrap: break-word; width: 50%; margin-left: 25%; display: block;"></p>
+		<canvas style="display: block; margin: 0 auto;" id="progresso"></canvas>
+		<br><br><br>
+		<div class="box dashboard-buttons" style="display: flex; justify-content:center; align-items:center;">
+			<div class="box">
+			  <a style="margin-right: 18px;" class="logar" href="#divOne">Informações</a>
+			  <a class="logar" href="#divTwo">Tarefas</a>
+			  <a style="margin-left: 18px;" class="logar" href="#divThree">Criar Tarefa</a>
+			  <a style="margin-left: 18px;" class="logar" href="#divFour">Gerenciar Equipe</a><br><br><br><br><br>
+			  <a style="margin-left: 18px;" class="logar" href="#divSix">Log do Projeto</a>
+			  <a style="margin-left: 18px;" class="logar" href="#divSeven">Tarefas Arquivadas</a>
+			  <a id="terminar" onclick="terminarprojeto()" style="margin-left: 18px;" class="logar">Terminar Projeto</a>
+			  <a id="sair" onclick="sairprojeto()" style="margin-left: 18px;" class="logar">Sair do Projeto</a>
+		  </div>
+		  </div>
+
+		<div class="overlay" id="divOne">
+			<div class="wrapper">
+				<h2>Informações Básicas</h2><a class="close" href="#">&times;</a>
+				<div class="content">
+					<div class="container">
+						<form>
+							<label style="color: black;">Nome do Projeto</label>
+							<input id="newnome" placeholder="Projeto" type="text">
+							<label style="color: black;" rows="3">Descrição do Projeto</label>
+							<textarea id="newdesc" placeholder="Descrição" type="text"></textarea>
+							<input id="salvar2" class="logar" onclick="alterarprojeto()" type="button" value="Salvar">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="overlay" id="divTwo">
+			<div class="wrapper">
+				<h2>Tarefas</h2><a class="close" href="#">&times;</a>
+				<div class="content">
+					<div class="container">
+						<select id="tarefas" name="Tarefas" size="6" multiple="multiple">
+
+						</select>
+						<br><br><br>
+						<a onclick="escolhertarefa()" class="logar">Escolher Tarefa</a><br><br><br>
+						<a onclick="finalizartarefa()" class="logar">Finalizar Tarefa</a><br><br><br>
+						<a onclick="excluirtarefa()" class="logar">Excluir Tarefa</a>
+					  </div>					  
+				</div>
+			</div>
+		</div>
+
+		  <div class="overlay" id="divThree">
+			<div class="wrapper">
+				<h2>Nova Tarefa</h2><a class="close" href="#">&times;</a>
+				<div class="content">
+					<div class="container">
+						<form>
+							<label style="color: black;">Título da tarefa</label>
+							<input id="tarnome" placeholder="Tarefa" type="text">
+							<label style="color: black;" rows="3">Descrição da tarefa</label>
+							<textarea id="tardesc" placeholder="Descrição" type="text"></textarea>
+							<br><br>
+							<input id="salvar2" class="logar" onclick="cadtarefa()" type="button" value="Criar">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="overlay" id="divFour">
+			<div class="wrapper">
+				<h2>Membros da Equipe</h2><a class="close" href="#">&times;</a>
+				<br>
+				<select disabled id="membros" name="Tarefas" size="6" multiple="multiple">
+
+				</select>
+				<br><br>
+				<input class="logar" onclick="addmembro()" type="button" value="Adicionar Membro">
+				<br><br>
+				<input class="logar" onclick="remuvo()" type="button" value="Remover Membro">
+
+				<div id="add" hidden>
+					<div class="wrapper animate__animated animate__fadeIn" style="margin-left: 20%;">
+						<input id="mbr1" placeholder="Membro#0000" type="text" style="width: 300%; margin-left: -30%;">
+						<br><br>
+						<input class="logar2" style="margin-left: 21%;" onclick="addmembro2()" type="button" value="Adicionar">	
+					</div>
+				</div>
+
+				<div id="rmv" hidden>
+					<div class="wrapper animate__animated animate__fadeIn" style="margin-left: 20%;">
+						<input id="mbr2" placeholder="Membro#0000" type="text" style="width: 300%; margin-left: -30%;">
+						<br><br>
+						<input class="logar2" style="margin-left: 30%;" onclick="remuvo2()" type="button" value="Remover">	
+					</div>
+				</div>
+
+						</form>
+			</div>
+		</div>
+
+		<div class="overlay" id="divFive">
+			<div class="wrapper" style="margin-left: -20%; width: 20%; display: inline-block;">
+				<h2 id="nomeanx">Anexos</h2>
+				<select id="Anexos" name="Tarefas" size="6" multiple="multiple">
+
+				</select>
+
+				<div style="display: flex;">
+				<input id="nomeanexo" placeholder="Nome" type="text">
+				<input id="linkanexo" placeholder="Link" type="text">
+			    </div>
+
+				<input id="salvar2" class="logar" onclick="addanexo()" type="button" value="Adicionar anexo">
+			</div>
+			<div class="wrapper" style="display: inline-block; justify-content: center;">
+				<h2 id="nometrf">Nome da Tarefa</h2><a class="close" href="#">&times;</a>
+				<p id="desctrf" style="color: black;">Descrição da tarefa</p>
+				<br>
+				<textarea id="code"></textarea>
+				<br>
+				<input id="salvar2" class="logar" onclick="salvartarefa()" type="button" value="Salvar">
+			</div>
+		</div>
+
+		<div class="overlay" id="divSix">
+			<div class="wrapper">
+				<h2>Log do Projeto</h2><a class="close" href="#">&times;</a>
+				<br>
+				<textarea disabled id="log" name="log" multiple="multiple" style="height:400px;"></textarea>
+			</div>
+		</div>
+
+		<div class="overlay" id="divSeven">
+			<div class="wrapper" style="width: 90%;">
+				<h2>Tarefas Arquivadas</h2><a class="close" href="index4.html">&times;</a>
+				<br><br>
+				<div class="content" style="margin-left: 4%;">
+					<div class="container" style="display: flex;">
+						<form style="width: 25%; margin-left: 15%;">
+							<label style="color: black;">Tarefas</label>
+		
+							<select id="TarefasArq" size="12" multiple="multiple">
+		
+							</select>
+						</form>
+		
+						<form id="ArqTar" style="width: 30%; margin-left: 10%; visibility: hidden;">
+							<label id="NomeTar" style="color: black;">Nome da Tarefa</label>
+							<br><br>
+							<label id="DescTar" style="color: black;">Descricao</label>
+							<br><br>
+							<label style="color: black;">Código</label>
+							<textarea id="CodTar" rows="7"></textarea>
+						</form>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<br><br><br><br><br><br><br><br><br><br><br>
+
+	</div>
+	</main>
+</body>
+
+<script>
+	function addanexo(){
+	const link = document.getElementById('linkanexo').value;
+	const texto = document.getElementById('nomeanexo').value;
+	const xhr = new XMLHttpRequest();
+		xhr.open('POST', '/add-anexo');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		  if (xhr.status === 200) {
+			alert('Anexo adicionado com sucesso!');
+			location.replace('index4.html');
+		  } else {
+			alert('Erro ao adicionar anexo.');
+		  }
+		};
+		const dados = 'link=' + encodeURIComponent(link) +
+		'&texto=' + encodeURIComponent(texto)
+
+		xhr.send(dados);
+}
+	
+</script>
+
+<script>
+	function addmembro(){
+		document.getElementById("add").removeAttribute('hidden')
+		if(document.getElementById("rmv").hasAttribute('hidden')){
+		}
+		else{
+		document.getElementById("rmv").setAttribute('hidden', 'true')
+		}
+	}
+
+	function addmembro2() {
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', '/add-membro');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		  if (xhr.status === 200) {
+			location.replace('index4.html');
+		  } 
+		  else if(xhr.status === 500) { 
+			alert('Esse membro já está no projeto!');
+			location.replace('index4.html');
+		  }
+		  else if(xhr.status === 600) { 
+			alert('Esse usuário já possui / faz parte de 6 projetos.');
+			location.replace('index4.html');
+		  }
+		};
+		const og = document.getElementById("mbr1").value;
+		const match = og.match(/^([a-zA-Z]+#[0-9]{4})$/);
+	  
+		if (match) {
+		  const numeros = og.replace(/\D/g, "");
+		  const dados = 'mbr1=' + encodeURIComponent(numeros);
+		  xhr.send(dados);
+		} else {
+		  alert('O campo deve conter "Membro#0000"!');
+		}
+	  }	  
+	
+	function remuvo(){
+		document.getElementById("rmv").removeAttribute('hidden')
+		if(document.getElementById("add").hasAttribute('hidden')){
+		}
+		else{
+		document.getElementById("add").setAttribute('hidden', 'true')
+		}
+	}
+
+	function remuvo2(){
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', '/rmv-membro');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		  if (xhr.status === 200) {
+			alert('Membro removido com sucesso!');
+			location.replace('index4.html');
+		  } else {
+			alert('Erro ao remover membro.');
+		  }
+		};
+		const og = document.getElementById("mbr2").value.slice(-4);
+		const dados = 'mbr2=' + encodeURIComponent(og)
+		
+		xhr.send(dados);
+	}
+
+	fetch('/get-membros', {
+		method: 'POST',
+	  })
+	  .then(response => {
+		return response.json();
+	  })
+	  .then(data => {
+		const select = document.querySelector('select[id="membros"]');
+		data.forEach(nick => {
+		  const option = document.createElement('option');
+		  option.value = nick;
+		  option.text = nick;
+		  select.appendChild(option);
+		});
+	  })
+	  .catch(error => {
+		console.error('Erro:', error);
+	  });
+	
+	  fetch('/get-log', {
+		method: 'POST',
+	  })
+	  .then(response => {
+		return response.json();
+	  })
+	  .then(data => {
+		console.log(data)
+		document.getElementById('log').innerHTML = data[0].log;
+	  })
+	  .catch(error => {
+		console.error('Erro:', error);
+	  });
+	  
+</script>
+
+<script>
+	fetch('/get-tarefas', {
+		method: 'POST',
+	  })
+		.then(response => {
+		  return response.json();
+		})
+		.then(data => {
+		  data.forEach(tarefa => {
+
+		  // seleciona o elemento select
+          const select = document.querySelector('select[name="Tarefas"]');
+
+          // cria uma nova opção
+          const option = document.createElement('option');
+          option.value = tarefa.tarefa;
+          option.text = tarefa.tarefa;
+
+          // adiciona a nova opção ao select
+          select.appendChild(option);
+		  });
+		})
+		.catch(error => {
+		  console.error('Erro:', error);
+		});
+
+		fetch('/get-tarefasarq', {
+			method: 'POST',
+		  })
+			.then(response => {
+			  return response.json();
+			})
+			.then(data => {
+			  data.forEach(tarefa => {
+	
+			  // seleciona o elemento select
+			  const select = document.querySelector('select[Id="TarefasArq"]');
+	
+			  // cria uma nova opção
+			  const option = document.createElement('option');
+			  option.value = tarefa.tarefa;
+			  option.text = tarefa.tarefa;
+	
+			  // adiciona a nova opção ao select
+			  select.appendChild(option);
+			  select.addEventListener('change', function() {
+
+				const select = document.getElementById("TarefasArq");
+				const selectedOption = select.options[select.selectedIndex];
+				const selectext = selectedOption.textContent;
+				console.log(selectext)
+	  
+				  fetch('/get-infoarqtar', {
+					  method: 'POST',
+					  headers: {'Content-Type': 'application/json'},
+					  body: JSON.stringify({ selectext })
+					  }).then(response => {
+						return response.json();
+					  }).then(data => {
+						console.log(data);
+					  document.getElementById('NomeTar').innerHTML = data[0].tarefa
+					  document.getElementById('DescTar').innerHTML = data[0].desctarefa
+					  document.getElementById('CodTar').innerHTML = data[0].code
+					  document.getElementById("ArqTar").style.visibility = "visible";
+					  document.getElementById("TarefasArq").setAttribute('disabled', 'true')		
+					  })
+				});
+			  });
+			})
+			.catch(error => {
+			  console.error('Erro:', error);
+			});
+</script>
+
+<script>
+	fetch('/info-proj', {
+		method: 'POST',
+		// restante do código de envio de dados
+	  }).then(response => {
+		return response.json();
+	  }).then(data => {
+		const nomeProjeto = data.nome;
+		const descricaoProjeto = data.descricao;
+		if(data.iscriador == "true") {
+		document.getElementById('sair').setAttribute('hidden', 'true');
+		}
+		else{
+		document.getElementById('terminar').setAttribute('hidden', 'true');
+		}
+		document.getElementById('prjnome').innerHTML = nomeProjeto
+		document.getElementById('prjdesc').innerHTML = descricaoProjeto
+		// restante do código de manipulação dos dados recebidos
+	  }).catch(error => {
+		console.error('Erro:', error);
+	  });	  
+	</script>
+
+<script>
+
+	let codigo = ""
+
+	function alterarprojeto() {
+		if (confirm("Confirmar alterações?")) {
+			  const xhr = new XMLHttpRequest();
+			  xhr.open('POST', '/alterar-projeto');
+			  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			  xhr.onload = function() {
+				if (xhr.status === 200) {
+				  alert("Alterações feitas com sucesso!");
+				} else {
+				  alert('Erro ao realizar alterações.');
+				}
+			  };
+			  const dados = 'nome=' + encodeURIComponent(document.getElementById('newnome').value) +
+			  '&descricao=' + encodeURIComponent(document.getElementById('newdesc').value)
+				  
+			  xhr.send(dados);
+			  setTimeout(function() {
+				location.replace("index2.html");
+			  }, 300); }
+			 }
+
+function cadtarefa(){
+	const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/cad-tarefa');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  alert('Tarefa cadastrada com sucesso!');
+			  location.replace('index4.html');
+			} else {
+			  alert('Erro ao cadastrar tarefa.');
+			}
+		  };
+		  tagtarefa = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+		  const dados = 'tarnome=' + encodeURIComponent(document.getElementById('tarnome').value) +
+              '&tardesc=' + encodeURIComponent(document.getElementById('tardesc').value) +
+			  '&tagtarefa=' + encodeURIComponent(tagtarefa);
+			  
+		  xhr.send(dados);
+}
+
+function finalizartarefa() {
+	if (confirm("Tem certeza que deseja finalizar a tarefa?")) {
+	const select = document.getElementById("tarefas");
+    const selectedOption = select.options[select.selectedIndex];
+    const selectext = selectedOption.textContent;
+
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/finalizar-tarefa');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  alert("Tarefa finalizada com sucesso!");
+			} else {
+			  alert('Erro ao finalizar tarefa.');
+			}
+		  };
+		  const dados = 'nometrf=' + encodeURIComponent(selectext)
+			  
+		  xhr.send(dados);
+		  setTimeout(function() {
+			location.replace("index4.html");
+		  }, 300); }
+		 }
+
+	var code = document.getElementById("code");
+	var CodeMirror = CodeMirror.fromTextArea(code, {
+	  lineNumbers: true,
+	  matchBrackets: true,
+	  mode: "text/x-csrc",
+	  theme: "material-darker"
+	});
+
+function escolhertarefa() {
+	const select = document.getElementById("tarefas");
+    const selectedOption = select.options[select.selectedIndex];
+    const selectext = selectedOption.textContent;
+
+	fetch('/escolher-tarefa', {
+		method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({ selectext })
+	    }).then(response => {
+		  return response.json();
+		}).then(data => {
+		location.replace('#divFive')
+		document.getElementById('nometrf').innerHTML = data[0].tarefa
+		document.getElementById('desctrf').innerHTML = data[0].desctarefa
+		codigo = data[0].code
+		CodeMirror.setValue(codigo)
+		  
+		})
+
+		fetch('/get-anexos', {
+		method: 'POST',
+	  })
+		.then(response => {
+		  return response.json();
+		})
+		.then(data => {
+		  data.forEach(data => {
+
+		  // seleciona o elemento select
+          const select = document.querySelector('select[id="Anexos"]');
+
+          // cria uma nova opção
+          const option = document.createElement('option');
+          option.value = data.link;
+          option.text = data.name;
+
+          // adiciona a nova opção ao select
+          select.appendChild(option);
+          select.addEventListener('change', function() {
+          // obtém o link selecionado
+
+		  const url = 'http://' + this.value;
+
+          // abre o link em uma nova guia
+          window.open(url, '_blank');
+          });
+
+		  });
+		})
+}
+
+
+function salvartarefa() {
+	if (confirm("Confirmar alterações?")) {
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/salvar-tarefa');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  alert("Tarefa atualizada com sucesso!");
+			} else {
+			  alert('Erro ao salvar tarefa.');
+			}
+		  };
+		  const dados = 'code=' + encodeURIComponent(CodeMirror.getValue()) +
+		  '&nometrf=' + encodeURIComponent(document.getElementById('nometrf').innerHTML)
+			  
+		  xhr.send(dados);
+		  setTimeout(function() {
+			location.replace("index4.html");
+		  }, 300); }
+		 }
+
+function excluirtarefa() {
+	if (confirm("Tem certeza que deseja excluir?")) {
+	const select = document.getElementById("tarefas");
+    const selectedOption = select.options[select.selectedIndex];
+    const selectext = selectedOption.textContent;
+
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/excluir-tarefa');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  alert("Tarefa excluída com sucesso!");
+			} else {
+			  alert('Erro ao excluir tarefa.');
+			}
+		  };
+		  const dados = 'nometrf=' + encodeURIComponent(selectext)
+			  
+		  xhr.send(dados);
+		  setTimeout(function() {
+			location.replace("index4.html");
+		  }, 300); }
+		  }
+
+function terminarprojeto() {
+	if (confirm("Tem certeza que deseja finalizar o projeto?")) {
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/finalizar-projeto');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  alert("Projeto finalizado com sucesso!");
+			} else {
+			  alert('Erro ao finalizar projeto.');
+			}
+		  };
+		  xhr.send();
+		  setTimeout(function() {
+			location.replace("index2.html");
+		  }, 300);
+		  } }
+
+function sairprojeto() {
+	if (confirm("Tem certeza que deseja sair do projeto?")) {
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', '/sair-projeto');
+		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		  xhr.onload = function() {
+			if (xhr.status === 200) {
+			  alert("Removido do projeto com sucesso!");
+			} else if (xhr.status === 500) {
+			  alert('Erro ao sair do projeto.');
+			}
+		  };
+		  xhr.send();
+		  setTimeout(function() {
+			location.replace("index2.html");
+		  }, 300);
+		  } }
+</script>
+
+<script>
+		fetch('/verificar-login', {
+		method: 'POST',
+	  })
+		.then(response => {
+		  return response.json();
+		})
+		.then(data => {
+		if(data.islogged == "true"){
+		}
+		else{
+		alert("Erro, você não está logado!")
+		setTimeout(function() {
+		location.replace("index.html");
+		}, 200);
+		}
+
+		  });
+</script>
+
+<script>
+	fetch('/dados-tarefas', {
+		method: 'POST'
+	    }).then(response => {
+		  return response.json();
+		}).then(data => {
+
+	var tarC = data[0].tarefas_conc
+	var tarP = data[0].tarefas_pend
+	var datachart = {
+        labels: ["Completas", "Pendentes"],
+        datasets: [
+          {
+            data: [tarC, tarP],
+            backgroundColor: ["#3F184F", "#1C1F22"],
+            hoverBackgroundColor: ["#3F184F", "#1C1F22"],
+          },
+        ],
+      }
+
+      var options = {
+        responsive: false,
+        maintainAspectRatio: false,
+      }
+
+      var myDoughnutChart = new Chart(document.getElementById("progresso"), {
+        type: "doughnut",
+        data: datachart,
+        options: options,
+      })
+	})
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+<script>
+  $(document).ready(function()  {
+
+
+	$("#goodbtn").parent().on("click","#goodbtn", function () {
+
+       $("#pagdark").removeClass('bg-dark').addClass('bg-white');
+
+	   $("#tit").css("color", "black");
+	   $("#descr").css("color", "black");
+	   $("#foo").css("color", "black");
+	   $("#foo").removeClass('text-white-50').addClass('text-black-50');
+
+	   $('#pagdark').attr("id", "pagwhite");
+	   $('#goodbtn').attr("id", "badbtn");
+       });
+
+	$("#goodbtn").parent().on("click","#badbtn",function () {
+
+	$("#pagwhite").removeClass('bg-white').addClass('bg-dark');
+
+	$("#tit").css("color", "white");
+	$("#descr").css("color", "white");
+	$("#foo").removeClass('text-black-50').addClass('text-white-50');
+
+	$('#pagwhite').attr("id", "pagdark");
+	$('#badbtn').attr("id", "goodbtn");
+
+	});
+
+	$('.bot').on('click',function(e){
+    $(this).find('i').addClass('fa-check-circle');
+  $(this).find('a').addClass('chk');
+    $(this).find('i').removeClass('fa-circle');
+    $('.bot').css('pointer-events','none');
+	$('.bot').removeClass('shake'); setTimeout(function(){$('.bot').addClass('shake'); }, 400); return false;
+});
+
+});
+
+</script>
+
+</html>

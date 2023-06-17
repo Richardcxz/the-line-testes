@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projeto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+	<link href="cover.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/x-icon" href="1x1.png">
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    
+</head>
+<body id="pagdark" class="d-flex h-100 text-center text-black">
+
+	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+	<script>function hideLoading() {document.getElementById("loading").style.display = "none";}setTimeout(hideLoading, 500)</script>
+   
+	<div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
+		<header class="mb-auto">
+		</header>
+	<main class="px-3 text-center">
+		<br><br><br><br>
+		<img src="back.png" style="width: 55px; height: 55px; position: fixed; top: 0; left: 0; 
+		margin:8px;" onclick="window.location.href='index3.html'">
+		<h1 class="dashboard-title" id="tit" style="font-family: yungjakes; font-size: 85px;">Meus Projetos</h1>
+		
+		<br><br>
+
+		<div class="project-buttons">
+			<button id="prj1" onclick="proj1()" class="project-button" hidden>Projeto 1</button>
+			<button id="prj2" onclick="proj2()" class="project-button" hidden>Projeto 2</button>
+			<button id="prj3" onclick="proj3()" class="project-button" hidden>Projeto 3</button>
+			<button id="prj4" onclick="proj4()" class="project-button" hidden>Projeto 4</button>
+			<button id="prj5" onclick="proj5()" class="project-button" hidden>Projeto 5</button>
+			<button id="prj6" onclick="proj6()" class="project-button" hidden>Projeto 6</button>
+		  </div>
+        
+		<br><br>
+
+	</div>
+	</main>
+</body>
+
+<script>
+
+const xhr = new XMLHttpRequest()
+xhr.open('GET', '/carregar-projetos')
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    const projetos = JSON.parse(xhr.responseText)
+	let count = 0
+	let arrayprojs = new Array(10)
+    projetos.forEach(projeto => {
+	  count++
+      arrayprojs[count] = projeto
+	  
+	  switch(count){
+	    case 1:
+		document.getElementById('prj1').innerHTML = projeto
+		document.getElementById('prj1').removeAttribute('hidden')
+		break
+		case 2:
+
+		if(projeto != document.getElementById('prj1').innerHTML){
+		document.getElementById('prj2').innerHTML = projeto
+		document.getElementById('prj2').removeAttribute('hidden')
+	    }else{
+		break
+		}
+
+		break
+		case 3:
+
+		if(projeto != document.getElementById('prj1').innerHTML 
+		&& projeto != document.getElementById('prj2').innerHTML){
+		document.getElementById('prj3').innerHTML = projeto
+		document.getElementById('prj3').removeAttribute('hidden')
+		}else{
+		break
+		}
+
+		break
+		case 4:
+
+		if(projeto != document.getElementById('prj1').innerHTML 
+		&& projeto != document.getElementById('prj2').innerHTML
+		&& projeto != document.getElementById('prj3').innerHTML){
+		document.getElementById('prj4').innerHTML = projeto
+		document.getElementById('prj4').removeAttribute('hidden')
+	    }else{
+		break
+		}
+
+		break
+		case 5:
+
+		if(projeto != document.getElementById('prj1').innerHTML 
+		&& projeto != document.getElementById('prj2').innerHTML
+		&& projeto != document.getElementById('prj3').innerHTML
+		&& projeto != document.getElementById('prj4').innerHTML){
+		document.getElementById('prj5').innerHTML = projeto
+		document.getElementById('prj5').removeAttribute('hidden')
+	    }else{
+		break
+		}
+
+		break
+		case 6:
+
+		if(projeto != document.getElementById('prj1').innerHTML 
+		&& projeto != document.getElementById('prj2').innerHTML
+		&& projeto != document.getElementById('prj3').innerHTML
+		&& projeto != document.getElementById('prj4').innerHTML
+		&& projeto != document.getElementById('prj5').innerHTML){
+		document.getElementById('prj6').innerHTML = projeto
+		document.getElementById('prj6').removeAttribute('hidden')
+	    }else{
+		break
+		}
+
+		break
+	  }
+
+      console.log(projeto)
+    })
+  } else {
+    console.log("Erro ao carregar os projetos.")
+  }
+}
+xhr.send()
+
+</script>
+
+<script>
+	fetch('/verificar-login', {
+		method: 'GET',
+	  })
+		.then(response => {
+		  return response.json();
+		})
+		.then(data => {
+		if(data.islogged == "true"){
+		  document.getElementById('salute').innerHTML = "Olá, " + data.username;
+		}
+		else{
+		alert("Erro, você não está logado!")
+		setTimeout(function() {
+		location.replace("index.html");
+		}, 200);
+		}
+
+		  });
+	</script>
+
+<script>
+	function proj1() {
+				  const xhr = new XMLHttpRequest();
+				  xhr.open('POST', '/selecao-proj');
+				  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				  xhr.onload = function() {
+					if (xhr.status === 200) {
+					  location.replace('index4.html');
+					}
+				  };
+				  const dados = 'prj=' + encodeURIComponent(document.getElementById('prj1').innerHTML);
+				  xhr.send(dados);
+		}
+	  function proj2() {
+		const xhr = new XMLHttpRequest();
+				  xhr.open('POST', '/selecao-proj');
+				  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				  xhr.onload = function() {
+					if (xhr.status === 200) {
+					  location.replace('index4.html');
+					}
+				  };
+				  const dados = 'prj=' + encodeURIComponent(document.getElementById('prj2').innerHTML);
+				  xhr.send(dados);
+	  }
+	  function proj3() {
+		const xhr = new XMLHttpRequest();
+				  xhr.open('POST', '/selecao-proj');
+				  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				  xhr.onload = function() {
+					if (xhr.status === 200) {
+					  location.replace('index4.html');
+					}
+				  };
+				  const dados = 'prj=' + encodeURIComponent(document.getElementById('prj3').innerHTML);
+				  xhr.send(dados);
+	  }
+	  function proj4() {
+		const xhr = new XMLHttpRequest();
+				  xhr.open('POST', '/selecao-proj');
+				  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				  xhr.onload = function() {
+					if (xhr.status === 200) {
+					  location.replace('index4.html');
+					}
+				  };
+				  const dados = 'prj=' + encodeURIComponent(document.getElementById('prj4').innerHTML);
+				  xhr.send(dados);
+	  }
+	  function proj5() {
+		const xhr = new XMLHttpRequest();
+				  xhr.open('POST', '/selecao-proj');
+				  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				  xhr.onload = function() {
+					if (xhr.status === 200) {
+					  location.replace('index4.html');
+					}
+				  };
+				  const dados = 'prj=' + encodeURIComponent(document.getElementById('prj5').innerHTML);
+				  xhr.send(dados);
+	  }
+	  function proj6() {
+		const xhr = new XMLHttpRequest();
+				  xhr.open('POST', '/selecao-proj');
+				  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				  xhr.onload = function() {
+					if (xhr.status === 200) {
+					  location.replace('index4.html');
+					}
+				  };
+				  const dados = 'prj=' + encodeURIComponent(document.getElementById('prj6').innerHTML);
+				  xhr.send(dados);
+	  }
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+<script>
+  $(document).ready(function()  {
+
+
+	$("#goodbtn").parent().on("click","#goodbtn", function () {
+
+       $("#pagdark").removeClass('bg-dark').addClass('bg-white');
+
+	   $("#tit").css("color", "black");
+	   $("#descr").css("color", "black");
+	   $("#foo").css("color", "black");
+	   $("#foo").removeClass('text-white-50').addClass('text-black-50');
+
+	   $('#pagdark').attr("id", "pagwhite");
+	   $('#goodbtn').attr("id", "badbtn");
+       });
+
+	$("#goodbtn").parent().on("click","#badbtn",function () {
+
+	$("#pagwhite").removeClass('bg-white').addClass('bg-dark');
+
+	$("#tit").css("color", "white");
+	$("#descr").css("color", "white");
+	$("#foo").removeClass('text-black-50').addClass('text-white-50');
+
+	$('#pagwhite').attr("id", "pagdark");
+	$('#badbtn').attr("id", "goodbtn");
+
+	});
+
+	$('.bot').on('click',function(e){
+    $(this).find('i').addClass('fa-check-circle');
+  $(this).find('a').addClass('chk');
+    $(this).find('i').removeClass('fa-circle');
+    $('.bot').css('pointer-events','none');
+	$('.bot').removeClass('shake'); setTimeout(function(){$('.bot').addClass('shake'); }, 400); return false;
+});
+
+});
+
+</script>
+
+</html>
