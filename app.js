@@ -33,17 +33,18 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, 'index.html'));
 });
 
-app.listen(port, () => {
-  console.log(`Servidor está executando na porta ${port}`);
-});
-
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
   host: 'b5a0yocqy8nk6zvkxbeo-mysql.services.clever-cloud.com',
   user: 'ukoz6hn5habn25uo',
   password: 'iLjAuwNfnYaQwOWuPP7N',
   port: 3306,
   database: 'b5a0yocqy8nk6zvkxbeo'
 });
+var server = app.listen(8000, function () {
+
+    console.log('Server rodando em http://127.0.0.1:8000/')
+
+})
 
 connection.connect((err) => {
   if (err) {
