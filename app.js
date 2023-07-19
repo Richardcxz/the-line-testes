@@ -1,11 +1,12 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const mysql = require('mysql');
 const path = require('path');
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const cheerio = require('cheerio');
 const { query } = require('express');
+
 app.use(express.static('www'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,9 +51,8 @@ connection.connect((err) => {
     return;
   }
   console.log('Conexão estabelecida com o banco de dados.');
+});
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/salvar-conta', function(req, res) {
   const usucad = req.body.usuario;
