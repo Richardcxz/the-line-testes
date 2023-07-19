@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Projeto</title>
+    <title>DASHBOARD</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
 	<link href="cover.css" rel="stylesheet">
@@ -18,128 +18,413 @@
 
     
 </head>
-<body id="pagdark" class="d-flex h-100 text-center text-black">
-
-	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
-	<script>function hideLoading() {document.getElementById("loading").style.display = "none";}setTimeout(hideLoading, 500)</script>
+<body id="pagdark" class="d-flex h-100 text-center; text-white" style="background-color: #0D0020;">
    
 	<div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
-		<header class="mb-auto">
-		</header>
 		
-	<main class="px-3 text-center">
-		<img src="exit.png" style="width: 55px; height: 55px; position: fixed; top: 0; left: 0; 
-		margin:8px;" onclick="sairacc()">
-		<div class="dashboard">
-			
-			<h1 class="dashboard-title" id="tit" style="font-family: yungjakes; font-size: 85px;">Dashboard Projeto</h1>
-			<p id="salute"></p>
-			<br><br><br><br><br><br>
-			<div class="box dashboard-buttons" style="display: flex; justify-content:center; align-items:center;">
-			  <div class="box">
-				<a style="margin-right: 18px;" class="logar" href="#divOne">Criar Projeto</a>
-				<a class="logar" onclick="meusProjetos()">Meus Projetos</a>
-				<a style="margin-left: 18px;" class="logar" href="#divTwo">Projetos Arquivados</a>
-				<a style="margin-left: 18px;" class="logar" href="#divThree">Configurações</a>
-			</div>
-			</div>
-		  </div>
+		<header class="mb-auto text-white animate__animated animate__fadeIn animate__delay-1s">
+			<nav>
+			  <ul>
+				<p id="um" style="text-decoration: underline;" onclick="menu()">PROJETOS</p>
+				<p id="tres" style="text-decoration: none; cursor: pointer;" onclick="configs()">CONFIGURAÇÕES</p>
 
-	</div>
+			  </ul>
+			</nav>
+		  </header>
+
+		  <script>
+			document.getElementById("tres").addEventListener("mouseover", function() {
+				document.getElementById("um").style.textDecoration = "none";
+				document.getElementById("tres").style.textDecoration = "underline";
+		    });
+
+			document.getElementById("tres").addEventListener("mouseout", function() {
+				document.getElementById("tres").style.textDecoration = "none";
+				document.getElementById("um").style.textDecoration = "underline";
+			});
+
+			document.getElementById("um").addEventListener("mouseover", function() {
+				document.getElementById("tres").style.textDecoration = "none";
+				document.getElementById("um").style.textDecoration = "underline";
+		    });
+
+			document.getElementById("um").addEventListener("mouseout", function() {
+				if (document.getElementById("configu").hidden === false) {
+					document.getElementById("um").style.textDecoration = "none";
+					document.getElementById("tres").style.textDecoration = "underline";
+				}				
+			});
+
+		  </script>
+		
+		<main class="px-3 text-center">
+		
+			<div id="retangulo">
+				
+				<br><br><br><br><br><br><br><br>
+	            
+				<div id="display" class="animate__animated animate__fadeIn animate__delay-1s">
+
+				<br><br>
+
+				<img src="exit.png" style="width: 35px; height: 35px; position: fixed; top: 3%; left: 3%; 
+		        margin: 18px; filter: invert(); cursor: pointer;" onclick="sairacc()">
+
+				<img src="bell.png" style="filter: invert(); width: 35px; height: 35px; position: fixed; top: 4.6%; left: 9%; 
+		        margin:8px; filter:invert(); cursor: pointer;" onclick="caixa()">
+
+				<div style="position: fixed; top: 11%; left: 9%;">
+					<div id="notif" hidden class="text-white animate__animated animate__zoomIn animate__fadeIn" style="width: 25%; height: 39%; position: fixed;
+		            background-color: #100127; border-radius: 8px; border: 1px solid white;">
+		            <p style="font-size: 18px;">NOTIFICAÇÕES</p>
+		  
+		            <select style="font-size: 16px; width: fit-content;" class="text-white" size="10" id="solic" nome="solic"
+					multiple="multiple">
+								
+					</select><br>
+
+						<div style="display: inline-flex;">
+						<img src="check.png" style="filter: invert(); margin-left: -20%; width: 25px; height: 25px;
+						margin:8px; filter:invert(); cursor: pointer;" onclick="aceitar()">
+						<img src="wrong.png" style="filter: invert(); margin-right: 20%; width: 25px; height: 25px;
+						margin:8px; filter:invert(); cursor: pointer;" onclick="recusar()">
+					</div>
+		        </div>
+				</div>
+
+				<p style="text-decoration: none; font-size: 45px;">DASHBOARD</p>
+				<p style="text-decoration: none;" id="salute"></p>
+				<p style="text-decoration: none; font-size: 18px;">escolha uma opção</p>
+				<br><br>
+				<div style="display: inline-flex;">
+				<p style="cursor: pointer; font-size: 18px; margin-right: 15px;" onclick="criarprojeto()">[CRIAR PROJETO]</p>
+				<p style="cursor: pointer; font-size: 18px; margin-right: 10px;" onclick="meusprojetos()">[MEUS PROJETOS]</p>
+				<p style="cursor: pointer; font-size: 18px; margin-left: 10px;" onclick="arqprojetos()">[PROJETOS ARQUIVADOS]</p>
+				</div>
+
+
+				</div>
+	
+				<div hidden id="criarproj" class="animate__animated animate__fadeIn" style="width: 75%; text-align: center; margin: 0 auto;">
+					<p style="cursor: pointer;" class="sair" onclick="menu()">x</p>
+					<br>
+					<div style="margin-top:1%; font-size: 18px;">
+							<p style="text-decoration: none;">Informações Básicas</p>
+									<form>
+										<label>Nome do Projeto</label>
+										<input class="text-white" id="nomeproj" placeholder="Nome" type="text"><br><br>
+										<label >Descrição do Projeto</label>
+										<textarea rows="1" style="resize: none; font-family: 'VCROSDMono'; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+										font-size: 18px; border: none; background-color: transparent; outline: none; align-items: center;
+										text-align: center; width: 25%;" class="text-white" id="descproj" placeholder="Descrição" type="text"></textarea>
+										<br><br>
+										<p id="salvar2" onclick="criarproj()" type="button">[SALVAR]</p>
+									</form>
+					</div>
+				</div>
+
+				<div hidden id="meusprojetos" class="animate__animated animate__fadeIn" style="width: 75%; text-align: center; margin: 0 auto;">
+					<p style="cursor: pointer;" class="sair" onclick="menu()">x</p>
+					<br>
+					<div style="margin-top:1%;">
+							<p style="font-size: 18px; text-decoration: none;">Escolha o projeto:</p>
+							<select style="font-size: 16px; width: 10%;" class="text-white" id="projetos" name="Projetos" size="6" multiple="multiple">
+								
+							</select><br><br>
+							<div style="display: inline-flex;">
+							<p style="cursor: pointer; font-size: 18px;" onclick="projselecao()">[ACESSAR]</p>
+							</div>
+					</div>
+				</div>
+
+				<div hidden id="configu" class="animate__animated animate__fadeIn" style="width: 75%; text-align: center; margin: 0 auto;">
+					<p style="cursor: pointer;" class="sair" onclick="menu()">x</p>
+					<br>
+					<div style="margin-top:1%; font-size: 18px;">
+							<p style="text-decoration: none;">Informações da Conta</p>
+									<form>
+										<label>Nome de Usuário</label>
+										<input class="text-white" id="usuchg" placeholder="Seu novo usuário" type="text"><br><br>
+										<label >Senha</label>
+										<input class="text-white" id="senchg" placeholder="Sua nova senha" type="text"><br><br>
+										<label >E-mail</label>
+										<input class="text-white" id="emailchg" placeholder="exemplo@provedor.com" type="text" value=""><br><br>
+										<br><br>
+										<p id="salvar2" onclick="mudarinfo()" type="button">[APLICAR]</p>
+									</form>
+					</div>
+				</div>
+
+
+					<div hidden class="animate__animated animate__fadeIn" id="projetosarq" style="width: 90%; margin-top: -10%; position:fixed;">
+						<h1 style="font-family: 'VCROSDMono'; margin-left: 6.6%;  text-align: center;">Seus Projetos</h1><a class="sair" style="margin-left: 50%;" href="index3.html">&times;</a>
+						<br><br>
+						<div  style="margin-left: 4%;">
+							<div  style="display: flex;">
+								<form id="Proj" style="width: 25%; margin-left: 0%; margin-top: 6%; ">
+									<p>Projetos</p>
+									<br><br>
+									<select class="text-white" id="Projetos" name="Projetos" size="12" multiple="multiple">
+				
+									</select>
+								</form>
+				
+								<form hidden id="Proj2" style="width: 25%; margin-left: 10%;">
+									<p id="Nomeproj1">Nome do Projeto</p>
+									<br><br>
+									<p id="Descproj1">Descricao</p>
+									<br><br>
+									<p>Tarefas</p>
+				
+									<select class="text-white" id="Tarefas" name="Tarefas" size="12" multiple="multiple">
+				
+									</select>
+								</form>
+				
+								<form id="Proj3" style="width: 30%; margin-left: 10%; visibility: hidden;">
+									<p id="NomeTar">Nome da Tarefa</p>
+									<br><br>
+									<p id="DescTar">Descricao</p>
+									<br><br>
+									<p>Código</p>
+				
+									<textarea id="code" style="resize: none;"></textarea>
+								</form>
+								<br>
+								<form hidden id="Proj4" style="width: 35%; margin-left: 10%; margin-right:5%;">
+									<br><br><br><br>
+									<p>Logs</p>
+									
+									<textarea disabled id="log" rows="11" style="width: max-content; resize: none;"></textarea>
+								</form>
+							</div>
+						</div>
+					</div>
+
+
+            <footer class="animate__animated animate__fadeIn" class="mt-auto text-center" style="position: fixed; bottom: 4%; left: 47%; text-align: center;">
+			  <p style="text-decoration: none; position: fixed; bottom: -12%; left: 50%; text-align: center; transform: translate(-50%, -50%);">by Richard</p>
+			</footer>	
+
+		</div>
+	
+		</div>
+	
+		</body>
 	</main>
-</body>
 
-<div class="overlay" id="divOne">
-	<div class="wrapper">
-		<h2>Informações Básicas</h2><a class="close" href="#">&times;</a>
-		<div class="content">
-			<div class="container">
-				<form>
-					<label style="color: black;">Nome do Projeto</label>
-					<input id="nomeproj" placeholder="Nome" type="text">
-					<label style="color: black;" rows="3">Descrição do Projeto</label>
-					<textarea id="descproj" placeholder="Descrição" type="text"></textarea>
-					<br><br>
-					<input id="salvar2" class="logar" onclick="criarproj()" type="button" value="Salvar">
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="overlay" id="divTwo">
-	<div class="wrapper" style="width: 90%;">
-		<h2>Seus Projetos</h2><a class="close" href="index3.html">&times;</a>
-		<br><br>
-		<div class="content" style="margin-left: 4%;">
-			<div class="container" style="display: flex;">
-				<form id="Proj" style="width: 25%; margin-left: 0%; margin-top: 6%; ">
-					<label style="color: black;">Projetos</label>
-					<br><br>
-					<select id="Projetos" name="Projetos" size="12" multiple="multiple">
-
-					</select>
-				</form>
-
-				<form hidden id="Proj2" style="width: 25%; margin-left: 10%;">
-					<label id="Nomeproj1" style="color: black;">Nome do Projeto</label>
-					<br><br>
-					<label id="Descproj1" style="color: black;">Descricao</label>
-					<br><br>
-					<label style="color: black;">Tarefas</label>
-
-					<select id="Tarefas" name="Tarefas" size="12" multiple="multiple">
-
-					</select>
-				</form>
-
-				<form id="Proj3" style="width: 30%; margin-left: 10%; visibility: hidden;">
-					<label id="NomeTar" style="color: black;">Nome da Tarefa</label>
-					<br><br>
-					<label id="DescTar" style="color: black;">Descricao</label>
-					<br><br>
-					<label style="color: black;">Código</label>
-
-					<textarea id="code"></textarea>
-				</form>
-				<br>
-				<form hidden id="Proj4" style="width: 35%; margin-left: 10%; margin-right:5%;">
-					<br><br><br><br>
-					<label style="color: black;">Logs</label>
-					
-					<textarea disabled id="log" rows="11"></textarea>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="overlay" id="divThree">
-	<div class="wrapper">
-		<h2>Informações da conta</h2><a class="close" href="#">&times;</a>
-		<div class="content">
-			<div class="container">
-				<form>
-					<label style="color: black;">Nome de Usuário</label>
-					<input id="usuchg" placeholder="Seu novo usuário" type="text">
-					<label style="color: black;">Senha</label>
-					<input id="senchg" placeholder="Sua nova senha" type="text">
-					<label id="sencad" style="color: black;">E-mail</label>
-					<input id="emailchg" placeholder="exemplo@provedor.com" type="text" value="">
-					<div class="form-group bot">
-					  </div>
-					<input id="salvar1" class="logar" onclick="mudarinfo()" type="button" value="Aplicar">
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
 
 <script>
+
+	function aceitar() {
+		const selectElement = document.getElementById('solic');
+		const selectedOptionText = selectElement.options[selectElement.selectedIndex].text;
+		const projectName = selectedOptionText.split('Convite para o projeto ')[1];
+
+		fetch('/aceitar-convite', {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json'
+		  },
+		  body: JSON.stringify({ nomeproj: projectName })
+		})
+		.then(response => {
+		  if (response.ok) {
+			alert('Convite aceito com sucesso!');
+			location.replace('index3.html');
+		  } else {
+			alert('Erro ao aceitar o convite.');
+			location.replace('index3.html');
+		  }
+		})
+		.catch(error => {
+		  console.error('Erro na requisição:', error);
+		  alert('Erro ao aceitar o convite.');
+		  location.replace('index3.html');
+		});
+	  }	  
+
+	  function recusar() {
+		const selectElement = document.getElementById('solic');
+		const selectedOptionText = selectElement.options[selectElement.selectedIndex].text;
+		const projectName = selectedOptionText.split('Convite para o projeto ')[1];
+	  fetch('/recusar-convite', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ nomeproj: projectName })
+	  })
+	  .then(response => {
+		if (response.ok) {
+		  alert('Convite recusado com sucesso!');
+		  location.replace('index3.html');
+		} else {
+		  alert('Erro ao recusar o convite.');
+		  location.replace('index3.html');
+		}
+	  })
+	  .catch(error => {
+		console.error('Erro na requisição:', error);
+		alert('Erro ao recusar o convite.');
+		location.replace('index3.html');
+	  });  
+	}
+	
+	function projselecao() {
+		const select = document.getElementById('projetos');
+		const selectedOption = select.options[select.selectedIndex].text;
+	  
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', '/selecao-proj');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		  if (xhr.status === 200) {
+			location.replace('index4.html');
+		  }
+		};
+		const dados = 'prj=' + encodeURIComponent(selectedOption);
+		xhr.send(dados);
+	  }
+	  
+	  fetch('/carregar-projetos', {
+		method: 'GET',
+	  })
+		.then(response => {
+		  return response.json();
+		})
+		.then(data => {
+		  const select = document.getElementById('projetos');
+		  data.forEach(projeto => {
+			const option = document.createElement('option');
+			option.value = projeto;
+			option.text = projeto;
+			select.appendChild(option);
+		  });
+		})
+		.catch(error => {
+		  console.error('Erro:', error);
+		});
+
+fetch('/carregar-solicitacoes')
+  .then(response => response.json())
+  .then(data => {
+    var select = document.getElementById('solic');
+    data.forEach(solicitacao => {
+      var option = document.createElement('option');
+      option.text = solicitacao;
+      select.add(option);
+    });
+  })
+  .catch(error => {
+    console.error('Erro ao carregar as solicitações:', error);
+  });
+	
+	  
+	function criarprojeto() {
+		document.getElementById("criarproj").hidden=false;
+		document.getElementById("meusprojetos").hidden=true;
+		document.getElementById("projetosarq").hidden=true;
+		document.getElementById("configu").hidden=true;
+		document.getElementById("display").hidden=true;
+	}
+	function meusprojetos() {
+		document.getElementById("criarproj").hidden=true;
+		document.getElementById("meusprojetos").hidden=false;
+		document.getElementById("projetosarq").hidden=true;
+		document.getElementById("configu").hidden=true;
+		document.getElementById("display").hidden=true;
+	}
+	function arqprojetos() {
+		document.getElementById("criarproj").hidden=true;
+		document.getElementById("meusprojetos").hidden=true;
+		document.getElementById("projetosarq").hidden=false;
+		document.getElementById("configu").hidden=true;
+		document.getElementById("display").hidden=true;
+	}
+	let counter;
+	function caixa() {
+		if(counter==1){
+		document.getElementById("notif").hidden=true;
+		counter = 0;
+		}
+		else{
+		document.getElementById("notif").hidden=false;
+		counter = 1;
+	    }
+	}
+	function configs() {
+
+		document.getElementById("tres").addEventListener("mouseout", function() {
+
+		document.getElementById("tres").removeEventListener("mouseout", mouseOutHandler);
+		
+		document.getElementById("tres").style.textDecoration = "underline";
+		document.getElementById("um").style.textDecoration = "none";
+		document.getElementById("um").style.cursor = "pointer";
+		
+		setTimeout(function() {
+				document.getElementById("tres").addEventListener("mouseout", mouseOutHandler);
+		}, 1000);
+		});
+		
+
+		document.getElementById("criarproj").hidden=true;
+		document.getElementById("meusprojetos").hidden=true;
+		document.getElementById("projetosarq").hidden=true;
+		document.getElementById("configu").hidden=false;
+		document.getElementById("display").hidden=true;
+		document.getElementById("um").style.textDecoration = "none";
+		document.getElementById("tres").style.textDecoration = "underline";
+	}
+	function mouseOutHandler() {
+			document.getElementById("tres").style.textDecoration = "underline";
+			document.getElementById("um").style.textDecoration = "none";
+		}
+	function menu() {
+		document.getElementById("tres").removeEventListener("mouseout", mouseOutHandler);
+
+		document.getElementById("tres").addEventListener("mouseout", function() {
+			document.getElementById("tres").style.textDecoration = "none";
+			document.getElementById("um").style.textDecoration = "underline";
+		});
+
+		document.getElementById("criarproj").hidden=true;
+		document.getElementById("meusprojetos").hidden=true;
+		document.getElementById("projetosarq").hidden=true;
+		document.getElementById("configu").hidden=true;
+		document.getElementById("display").hidden=false;
+		document.getElementById("um").style.textDecoration = "underline";
+		document.getElementById("tres").style.textDecoration = "none";
+	}
+	function menuarq(){
+		const projetosSelect = document.getElementById("Projetos");
+		const tarefasSelect = document.getElementById("Tarefas");
+		projetosSelect.selectedIndex = -1;
+		tarefasSelect.selectedIndex = -1;
+		  
+		const proj2Form = document.getElementById("Proj2");
+		const proj3Form = document.getElementById("Proj3");
+		const proj4Form = document.getElementById("Proj4");
+		proj2Form.setAttribute("hidden", "true");
+		proj3Form.style.visibility = "hidden";
+		proj4Form.setAttribute("hidden", "true");
+		  
+		projetosSelect.removeAttribute("disabled");
+		tarefasSelect.removeAttribute("disabled");
+		
+	    document.getElementById("criarproj").hidden=true;
+		document.getElementById("meusprojetos").hidden=true;
+		document.getElementById("projetosarq").hidden=true;
+		document.getElementById("configu").hidden=true;
+	}
+
 	let codigo = "";
 	var code = document.getElementById("code");
 	var CodeMirror = CodeMirror.fromTextArea(code, {
 	  lineNumbers: true,
+	  viewportMargin: 2,
 	  matchBrackets: true,
 	  readOnly: true,
 	  mode: "text/x-csrc",
@@ -371,9 +656,6 @@ xhr.send(off);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
 <script>
-	  function meusProjetos() {
-		location.replace('index2.html');
-	  }
 	  
 	  function configuracoes() {
 		console.log("Botão Configurações clicado!");

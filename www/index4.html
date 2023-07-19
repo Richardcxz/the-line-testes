@@ -19,181 +19,321 @@
 
     
 </head>
-<body id="pagdark" class="d-flex h-100 text-center text-black">
-
-	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
-	<script>function hideLoading() {document.getElementById("loading").style.display = "none";}setTimeout(hideLoading, 500)</script>
+<body id="pagdark" class="d-flex h-100 text-center text-white" style="background-color: #0D0020;">
    
 	<div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
-		<header class="mb-auto">
-		</header>
+		<header class="mb-auto text-white animate__animated animate__fadeIn animate__delay-1s">
+			<nav>
+			  <ul>
+
+			  <p id="um" style="cursor: pointer; font-size: 18px;" onclick="showone()">INFORMAÇÕES</p>
+			  <p  id="dois" style="cursor: pointer; font-size: 18px;" onclick="showtrfs()">TAREFAS</p>
+			  <div hidden id="trfs" style="opacity: 0.6;">
+			    <p id="tres" style="cursor: pointer; font-size: 18px;" onclick="showtwo()">GERENCIAR TAREFAS</p>
+				<p id="quatro" style="cursor: pointer; font-size: 18px;" onclick="showthree()">CRIAR TAREFA</p>
+				<p id="cinco" style="cursor: pointer; font-size: 18px;" onclick="showseven()">TAREFAS ARQUIVADAS</p>
+			  </div>
+			  <p id="seis" style="cursor: pointer; font-size: 18px;" onclick="showfour()">GERENCIAR EQUIPE</p>
+			  <p id="sete" style="cursor: pointer; font-size: 18px;" onclick="showsix()">LOG DO PROJETO</p>
+			  <p style="cursor: pointer; font-size: 18px;" id="terminar" onclick="terminarprojeto()">TERMINAR PROJETO</p>
+			  <p style="cursor: pointer; font-size: 18px;" id="sair" onclick="sairprojeto()">SAIR  DO PROJETO</p>
+
+			  </ul>
+			</nav>
+		  </header>
 	<main class="px-3 text-center">
-		<img src="back.png" style="width: 55px; height: 55px; position: fixed; top: 0; left: 0; 
-		margin:8px;" onclick="window.location.href='index2.html'">
 
-		<h1 id="prjnome" class="dashboard-title" id="tit" style="font-family: yungjakes; font-size: 85px;">Nome do Projeto</h1>
-		<p id="prjdesc" style="font-family: segoe UI light; font-size: 20px; word-wrap: break-word; width: 50%; margin-left: 25%; display: block;"></p>
-		<canvas style="display: block; margin: 0 auto;" id="progresso"></canvas>
-		<br><br><br>
+		<div id="display" class="animate__animated animate__fadeIn animate__delay-1s" style="text-align:center;">
+
 		<div class="box dashboard-buttons" style="display: flex; justify-content:center; align-items:center;">
-			<div class="box">
-			  <a style="margin-right: 18px;" class="logar" href="#divOne">Informações</a>
-			  <a class="logar" href="#divTwo">Tarefas</a>
-			  <a style="margin-left: 18px;" class="logar" href="#divThree">Criar Tarefa</a>
-			  <a style="margin-left: 18px;" class="logar" href="#divFour">Gerenciar Equipe</a><br><br><br><br><br>
-			  <a style="margin-left: 18px;" class="logar" href="#divSix">Log do Projeto</a>
-			  <a style="margin-left: 18px;" class="logar" href="#divSeven">Tarefas Arquivadas</a>
-			  <a id="terminar" onclick="terminarprojeto()" style="margin-left: 18px;" class="logar">Terminar Projeto</a>
-			  <a id="sair" onclick="sairprojeto()" style="margin-left: 18px;" class="logar">Sair do Projeto</a>
-		  </div>
-		  </div>
+			<div class="box text-white">
 
-		<div class="overlay" id="divOne">
-			<div class="wrapper">
-				<h2>Informações Básicas</h2><a class="close" href="#">&times;</a>
-				<div class="content">
-					<div class="container">
-						<form>
-							<label style="color: black;">Nome do Projeto</label>
-							<input id="newnome" placeholder="Projeto" type="text">
-							<label style="color: black;" rows="3">Descrição do Projeto</label>
-							<textarea id="newdesc" placeholder="Descrição" type="text"></textarea>
-							<input id="salvar2" class="logar" onclick="alterarprojeto()" type="button" value="Salvar">
-						</form>
-					</div>
-				</div>
-			</div>
+		<img src="back.png" style="width: 35px; height: 35px; position: fixed; top: 3%; left: 3%; 
+		margin:8px; filter:invert();" onclick="window.location.href='index3.html'">
+
+		<h1 id="prjnome" class="dashboard-title  animate__animated animate__fadeIn animate__delay-1s" id="tit" style="font-family: 'VCROSDMono'; font-size: 85px;">Nome do Projeto</h1>
+		<p id="prjdesc" class="animate__animated animate__fadeIn animate__delay-1s" style="font-family: 'VCROSDMono'; font-size: 20px; word-wrap: break-word; width: 50%; margin-left: 25%; display: block;"></p>
+		<canvas class="animate__animated animate__fadeIn animate__delay-1s" style="display: block; margin: 0 auto;" id="progresso"></canvas>
+		<br><br><br>
+
+		  </div>
+		  </div>
+		  
 		</div>
+
+		<script>
+		function showtrfs(){
+			document.getElementById("trfs").hidden=false;
+			document.getElementById("display").hidden=true;
+		}
+		function showone(){
+			document.getElementById("trfs").hidden=true;
+			document.getElementById("um").style.textDecoration = "underline";
+			document.getElementById("dois").style.textDecoration = "none";
+			document.getElementById("tres").style.textDecoration = "none";
+			document.getElementById("quatro").style.textDecoration = "none";
+			document.getElementById("cinco").style.textDecoration = "none";
+			document.getElementById("seis").style.textDecoration = "none";
+			document.getElementById("sete").style.textDecoration = "none";
+			document.getElementById("divOne").hidden=false;
+			document.getElementById("display").hidden=true;
+			document.getElementById("divTwo").hidden=true;
+			document.getElementById("divThree").hidden=true;
+			document.getElementById("divFour").hidden=true;
+			document.getElementById("divFive").hidden=true;
+			document.getElementById("divSix").hidden=true;
+			document.getElementById("divSeven").hidden=true;
+		}
+		function showfour(){
+			document.getElementById("trfs").hidden=true;
+			document.getElementById("um").style.textDecoration = "none";
+			document.getElementById("dois").style.textDecoration = "none";
+			document.getElementById("tres").style.textDecoration = "none";
+			document.getElementById("quatro").style.textDecoration = "none";
+			document.getElementById("cinco").style.textDecoration = "none";
+			document.getElementById("seis").style.textDecoration = "underline";
+			document.getElementById("sete").style.textDecoration = "none";
+			document.getElementById("divOne").hidden=true;
+			document.getElementById("display").hidden=true;
+			document.getElementById("divTwo").hidden=true;
+			document.getElementById("divThree").hidden=true;
+			document.getElementById("divFour").hidden=false;
+			document.getElementById("divFive").hidden=true;
+			document.getElementById("divSix").hidden=true;
+			document.getElementById("divSeven").hidden=true;
+		}
+		function showseven(){
+			document.getElementById("um").style.textDecoration = "none";
+			document.getElementById("dois").style.textDecoration = "underline";
+			document.getElementById("tres").style.textDecoration = "none";
+			document.getElementById("quatro").style.textDecoration = "none";
+			document.getElementById("cinco").style.textDecoration = "underline";
+			document.getElementById("seis").style.textDecoration = "none";
+			document.getElementById("sete").style.textDecoration = "none";
+			document.getElementById("divOne").hidden=true;
+			document.getElementById("display").hidden=true;
+			document.getElementById("divTwo").hidden=true;
+			document.getElementById("divThree").hidden=true;
+			document.getElementById("divFour").hidden=true;
+			document.getElementById("divFive").hidden=true;
+			document.getElementById("divSix").hidden=true;
+			document.getElementById("divSeven").hidden=false;
+		}
+		function showsix(){
+			document.getElementById("trfs").hidden=true;
+			document.getElementById("um").style.textDecoration = "none";
+			document.getElementById("dois").style.textDecoration = "none";
+			document.getElementById("tres").style.textDecoration = "none";
+			document.getElementById("quatro").style.textDecoration = "none";
+			document.getElementById("cinco").style.textDecoration = "none";
+			document.getElementById("seis").style.textDecoration = "none";
+			document.getElementById("sete").style.textDecoration = "underline";
+			document.getElementById("divOne").hidden=true;
+			document.getElementById("display").hidden=true;
+			document.getElementById("divTwo").hidden=true;
+			document.getElementById("divThree").hidden=true;
+			document.getElementById("divFour").hidden=true;
+			document.getElementById("divFive").hidden=true;
+			document.getElementById("divSix").hidden=false;
+			document.getElementById("divSeven").hidden=true;
+		}
+		function showtwo(){
+			document.getElementById("um").style.textDecoration = "none";
+			document.getElementById("dois").style.textDecoration = "underline";
+			document.getElementById("tres").style.textDecoration = "underline";
+			document.getElementById("quatro").style.textDecoration = "none";
+			document.getElementById("cinco").style.textDecoration = "none";
+			document.getElementById("seis").style.textDecoration = "none";
+			document.getElementById("sete").style.textDecoration = "none";
+			document.getElementById("divOne").hidden=true;
+			document.getElementById("display").hidden=true;
+			document.getElementById("divTwo").hidden=false;
+			document.getElementById("divThree").hidden=true;
+			document.getElementById("divFour").hidden=true;
+			document.getElementById("divFive").hidden=true;
+			document.getElementById("divSix").hidden=true;
+			document.getElementById("divSeven").hidden=true;
+		}
+		function showthree(){
+			document.getElementById("um").style.textDecoration = "none";
+			document.getElementById("dois").style.textDecoration = "underline";
+			document.getElementById("tres").style.textDecoration = "none";
+			document.getElementById("quatro").style.textDecoration = "underline";
+			document.getElementById("cinco").style.textDecoration = "none";
+			document.getElementById("seis").style.textDecoration = "none";
+			document.getElementById("sete").style.textDecoration = "none";
+			document.getElementById("divOne").hidden=true;
+			document.getElementById("display").hidden=true;
+			document.getElementById("divTwo").hidden=true;
+			document.getElementById("divThree").hidden=false;
+			document.getElementById("divFour").hidden=true;
+			document.getElementById("divFive").hidden=true;
+			document.getElementById("divSix").hidden=true;
+			document.getElementById("divSeven").hidden=true;
+		}
+		function showfive(){
+			document.getElementById("trfs").hidden=true;
+			document.getElementById("divTwo").hidden=true;
+			document.getElementById("divFive").hidden=false;
+		}
+		function menu(){
+			document.getElementById("trfs").hidden=true;
+			document.getElementById("um").style.textDecoration = "none";
+			document.getElementById("dois").style.textDecoration = "none";
+			document.getElementById("tres").style.textDecoration = "none";
+			document.getElementById("quatro").style.textDecoration = "none";
+			document.getElementById("cinco").style.textDecoration = "none";
+			document.getElementById("seis").style.textDecoration = "none";
+			document.getElementById("sete").style.textDecoration = "none";
+			document.getElementById("divOne").hidden=true;
+			document.getElementById("display").hidden=false;
+			document.getElementById("divTwo").hidden=true;
+			document.getElementById("divThree").hidden=true;
+			document.getElementById("divFour").hidden=true;
+			document.getElementById("divFive").hidden=true;
+			document.getElementById("divSix").hidden=true;
+			document.getElementById("divSeven").hidden=true;
+		}
+		</script>
+
+		<div class="animate__animated animate__fadeIn" hidden id="divOne" style="width: 25%; display: inline-block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			
+			<p style="cursor: pointer; margin-top: -25%; margin-right: 10px; font-family: 'VCROSDMono';" class="sair" onclick="menu()">x</p>
+			<form>
+			  <p style="font-size: 18px;">INFORMAÇÕES BÁSICAS</p><br>
+			  <p>NOME DO PROJETO</p>
+			  <input class="text-white"  id="newnome" placeholder="Projeto" type="text"><br><br>
+			  <p rows="3">DESCRIÇÃO DO PROJETO</p>
+			  <textarea class="text-white"  id="newdesc" placeholder="Descrição" type="text" style="width: 65%; resize: none;"></textarea><br><br>
+			  <p style="cursor: pointer; font-size: 18px;" id="salvar2" onclick="alterarprojeto()" type="button">[SALVAR]</p>
+			</form>
+		  </div>		  
 		
-		<div class="overlay" id="divTwo">
-			<div class="wrapper">
-				<h2>Tarefas</h2><a class="close" href="#">&times;</a>
-				<div class="content">
-					<div class="container">
-						<select id="tarefas" name="Tarefas" size="6" multiple="multiple">
+		
+		  <div class="animate__animated animate__fadeIn" hidden id="divTwo" style="width: 25%; display: inline-block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			
+			<p style="cursor: pointer; margin-top: -25%; margin-right: 10px; font-family: 'VCROSDMono';" class="sair" onclick="menu()">x</p>
+			<p style="font-size: 18px; text-decoration: none;">TAREFAS ATUAIS</p>
+			<select style="font-size: 18px;" class="text-white" id="tarefas" name="Tarefas" size="6" multiple="multiple">
 
-						</select>
-						<br><br><br>
-						<a onclick="escolhertarefa()" class="logar">Escolher Tarefa</a><br><br><br>
-						<a onclick="finalizartarefa()" class="logar">Finalizar Tarefa</a><br><br><br>
-						<a onclick="excluirtarefa()" class="logar">Excluir Tarefa</a>
-					  </div>					  
-				</div>
+			</select>
+			<br><br><br>
+
+			<div style="display: inline-flex; width: max-content; top: 50%; margin-left: -23.2%;">
+			<p style="cursor: pointer; margin-right: 20px; font-size: 18px;" onclick="escolhertarefa()">[ESCOLHER TAREFA]</p>
+			<p style="cursor: pointer; margin-right: 20px; font-size: 18px;" onclick="finalizartarefa()">[FINALIZAR TAREFA]</p>
+			<p style="cursor: pointer; font-size: 18px;" onclick="excluirtarefa()">[EXCLUIR TAREFA]</p>
 			</div>
-		</div>
+		  </div>
 
-		  <div class="overlay" id="divThree">
-			<div class="wrapper">
-				<h2>Nova Tarefa</h2><a class="close" href="#">&times;</a>
-				<div class="content">
-					<div class="container">
-						<form>
-							<label style="color: black;">Título da tarefa</label>
-							<input id="tarnome" placeholder="Tarefa" type="text">
-							<label style="color: black;" rows="3">Descrição da tarefa</label>
-							<textarea id="tardesc" placeholder="Descrição" type="text"></textarea>
-							<br><br>
-							<input id="salvar2" class="logar" onclick="cadtarefa()" type="button" value="Criar">
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div class="overlay" id="divFour">
-			<div class="wrapper">
-				<h2>Membros da Equipe</h2><a class="close" href="#">&times;</a>
+		  <div class="animate__animated animate__fadeIn" hidden id="divThree" style="width: 25%; display: inline-block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			<p style="cursor: pointer; margin-top: -25%; margin-right: 10px; font-family: 'VCROSDMono';" class="sair" onclick="menu()">x</p>
+			<form>
+			  <p style="font-size: 18px;">NOVA TAREFA</p><br>
+			  <p>TÍTULO DA TAREFA</p>
+			  <input class="text-white"  id="tarnome" placeholder="Tarefa" type="text"><br><br>
+			  <p rows="3">DESCRIÇÃO DA TAREFA</p>
+			  <textarea class="text-white"  id="tardesc" placeholder="Descrição" type="text" style="width: 65%; resize: none;"></textarea><br><br>
+			  <p style="cursor: pointer; font-size: 18px;" id="salvar2" onclick="cadtarefa()" type="button">[CRIAR]</p>
+			</form>
+		  </div>
+
+
+		  <div class="animate__animated animate__fadeIn" hidden id="divFour" style="width: 35%; display: inline-block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			<p style="cursor: pointer; margin-top: -25%; margin-right: 10px; font-family: 'VCROSDMono';" class="sair" onclick="menu()">x</p>
+			<p style="font-size: 18px;">MEMBROS DA EQUIPE</p>
 				<br>
-				<select disabled id="membros" name="Tarefas" size="6" multiple="multiple">
+				<select style="width: max-content;" class="text-white" disabled id="membros" name="Tarefas" size="6" multiple="multiple">
 
 				</select>
 				<br><br>
-				<input class="logar" onclick="addmembro()" type="button" value="Adicionar Membro">
-				<br><br>
-				<input class="logar" onclick="remuvo()" type="button" value="Remover Membro">
-
+				<p style="cursor: pointer; font-size: 18px;" onclick="addmembro()">[ADICIONAR MEMBRO]</p><br>
 				<div id="add" hidden>
-					<div class="wrapper animate__animated animate__fadeIn" style="margin-left: 20%;">
-						<input id="mbr1" placeholder="Membro#0000" type="text" style="width: 300%; margin-left: -30%;">
+					<div class="animate__animated animate__fadeIn">
+						<input style="font-family: 'VCROSDMono'; width: 100%;" class="text-white" id="mbr1" placeholder="Membro#0000" style="width:max-content;" type="text">
 						<br><br>
-						<input class="logar2" style="margin-left: 21%;" onclick="addmembro2()" type="button" value="Adicionar">	
+						<p class="text-white" style="cursor: pointer; font-size: 18px;" onclick="addmembro2()">[ADICIONAR]</p>
 					</div>
 				</div>
-
+				
+				<p style="cursor: pointer; font-size: 18px;" onclick="remuvo()">[REMOVER MEMBRO]</p><br>
 				<div id="rmv" hidden>
-					<div class="wrapper animate__animated animate__fadeIn" style="margin-left: 20%;">
-						<input id="mbr2" placeholder="Membro#0000" type="text" style="width: 300%; margin-left: -30%;">
+					<div class="animate__animated animate__fadeIn" >
+						<input style="font-family: 'VCROSDMono'; width: 100%;" class="text-white" id="mbr2" placeholder="Membro#0000" style="width:max-content;" type="text">
 						<br><br>
-						<input class="logar2" style="margin-left: 30%;" onclick="remuvo2()" type="button" value="Remover">	
+						<p class="text-white" style="cursor: pointer; font-size: 18px;" onclick="remuvo2()">[REMOVER]</p>
 					</div>
 				</div>
 
 						</form>
-			</div>
 		</div>
 
-		<div class="overlay" id="divFive">
-			<div class="wrapper" style="margin-left: -20%; width: 20%; display: inline-block;">
-				<h2 id="nomeanx">Anexos</h2>
-				<select id="Anexos" name="Tarefas" size="6" multiple="multiple">
+		<div class="animate__animated animate__fadeIn" hidden id="divFive" style="width: 25%; display: inline-block; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+			<p style="cursor: pointer; margin-top: 55%; margin-right: 0px; font-family: 'VCROSDMono';" class="sair" onclick="menu()">x</p>
+			
+				<p style="font-size: 45px; text-decoration: none;" id="nometrf">Nome da Tarefa</p>
+				<p style="font-size: 20px; text-decoration: none;" id="desctrf">Descrição da tarefa</p>
+				<br>
+				<textarea  style="cursor: pointer; resize: none;" id="code"></textarea>
+				<br>
+				
+				
+
+				<div style="position: fixed; top: 35%; left: -90%; text-align: center;">
+				<p style="font-size: 18px; text-decoration: none;" id="nomeanx">ANEXOS</p>
+				<select class="text-white" id="Anexos" name="Tarefas" size="6" multiple="multiple">
 
 				</select>
-
-				<div style="display: flex;">
-				<input id="nomeanexo" placeholder="Nome" type="text">
-				<input id="linkanexo" placeholder="Link" type="text">
+				<br><br>
+				<input style="width: 100%;" class="text-white" id="nomeanexo" placeholder="Nome" type="text">
+				<br>
+				<input style="width: 100%;" class="text-white" id="linkanexo" placeholder="Link" type="text">
+				<br><br>
+				<p style="cursor: pointer; font-size: 18px;" id="salvar2" onclick="addanexo()">[ADICIONAR ANEXO]</p>
+				<br>
 			    </div>
 
-				<input id="salvar2" class="logar" onclick="addanexo()" type="button" value="Adicionar anexo">
-			</div>
-			<div class="wrapper" style="display: inline-block; justify-content: center;">
-				<h2 id="nometrf">Nome da Tarefa</h2><a class="close" href="#">&times;</a>
-				<p id="desctrf" style="color: black;">Descrição da tarefa</p>
+				<p style="cursor: pointer; font-size: 18px;" id="salvar2" onclick="salvartarefa()">[SALVAR]</p>
+        </div>
+
+
+		<div class="animate__animated animate__fadeIn" hidden id="divSix" style="width: 25%; display: inline-block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			<p style="cursor: pointer; margin-top: -25%; margin-right: 10px; font-family: 'VCROSDMono';" class="sair" onclick="menu()">x</p>	
+			<p style="font-size: 18px;">LOG DO PROJETO</p>
 				<br>
-				<textarea id="code"></textarea>
-				<br>
-				<input id="salvar2" class="logar" onclick="salvartarefa()" type="button" value="Salvar">
+				<textarea disabled id="log" name="log" multiple="multiple" style="height:400px; width: 100%; resize: none;"></textarea>
 			</div>
 		</div>
 
-		<div class="overlay" id="divSix">
-			<div class="wrapper">
-				<h2>Log do Projeto</h2><a class="close" href="#">&times;</a>
-				<br>
-				<textarea disabled id="log" name="log" multiple="multiple" style="height:400px;"></textarea>
-			</div>
-		</div>
 
-		<div class="overlay" id="divSeven">
-			<div class="wrapper" style="width: 90%;">
-				<h2>Tarefas Arquivadas</h2><a class="close" href="index4.html">&times;</a>
-				<br><br>
-				<div class="content" style="margin-left: 4%;">
-					<div class="container" style="display: flex;">
-						<form style="width: 25%; margin-left: 15%;">
-							<label style="color: black;">Tarefas</label>
+		<div class="animate__animated animate__fadeIn" hidden id="divSeven" style="width: 25%; display: inline-block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			<br><br><br><br><br><br><br>
+			<p style="cursor: pointer; margin-top: -25%; margin-right: 10px; font-family: 'VCROSDMono';" class="sair" onclick="menu()">x</p>
+			<form>
+				<p style="font-size: 18px;">TAREFAS</p>
 		
-							<select id="TarefasArq" size="12" multiple="multiple">
-		
-							</select>
-						</form>
-		
-						<form id="ArqTar" style="width: 30%; margin-left: 10%; visibility: hidden;">
-							<label id="NomeTar" style="color: black;">Nome da Tarefa</label>
-							<br><br>
-							<label id="DescTar" style="color: black;">Descricao</label>
-							<br><br>
-							<label style="color: black;">Código</label>
-							<textarea id="CodTar" rows="7"></textarea>
-						</form>
-						<br>
+				<select class="text-white"  id="TarefasArq" size="12" multiple="multiple">
+
+				</select>
+			</form>
+			<form id="ArqTar" style="width: 30%; visibility: hidden; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+
+				<div style="display: flex; justify-content: center;">
+					<div style="display: flex; flex-direction: column; align-items: center;">
+					  <label style="font-family: 'VCROSDMono'; margin-bottom: 10px;" id="NomeTar">NOME DA TAREFA</label>
+					  <label style="font-family: 'VCROSDMono'; margin-bottom: 10px; width: max-content;" id="DescTar">DESCRIÇÃO</label>
 					</div>
-				</div>
-			</div>
-		</div>
-		
+					<div style=" margin-left: 10%;display: flex; flex-direction: column; align-items: center;">
+					  <label style="font-family: 'VCROSDMono'; margin-bottom: 10px;">&nbsp&nbsp&nbsp&nbsp&nbspCÓDIGO&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+					  <textarea class="text-white" id="CodTar" rows="7" style="width: 100%; resize: none;"></textarea>
+					</div>
+				  </div>
 
-		<br><br><br><br><br><br><br><br><br><br><br>
+			  </form>
+			  
+			  
+		  </div>	
 
 	</div>
 	</main>
@@ -239,13 +379,9 @@
 		xhr.onload = function() {
 		  if (xhr.status === 200) {
 			location.replace('index4.html');
-		  } 
-		  else if(xhr.status === 500) { 
-			alert('Esse membro já está no projeto!');
-			location.replace('index4.html');
 		  }
-		  else if(xhr.status === 600) { 
-			alert('Esse usuário já possui / faz parte de 6 projetos.');
+		  else if(xhr.status === 500) { 
+			alert('Esse membro já está no projeto/foi convidado!');
 			location.replace('index4.html');
 		  }
 		};
@@ -259,7 +395,7 @@
 		} else {
 		  alert('O campo deve conter "Membro#0000"!');
 		}
-	  }	  
+	  } 
 	
 	function remuvo(){
 		document.getElementById("rmv").removeAttribute('hidden')
@@ -441,7 +577,7 @@
 				  
 			  xhr.send(dados);
 			  setTimeout(function() {
-				location.replace("index2.html");
+				location.replace("index3.html");
 			  }, 300); }
 			 }
 
@@ -509,7 +645,7 @@ function escolhertarefa() {
 	    }).then(response => {
 		  return response.json();
 		}).then(data => {
-		location.replace('#divFive')
+		showfive();
 		document.getElementById('nometrf').innerHTML = data[0].tarefa
 		document.getElementById('desctrf').innerHTML = data[0].desctarefa
 		codigo = data[0].code
@@ -543,6 +679,7 @@ function escolhertarefa() {
 
           // abre o link em uma nova guia
           window.open(url, '_blank');
+		  select.selectedIndex = -1;
           });
 
 		  });
@@ -609,7 +746,7 @@ function terminarprojeto() {
 		  };
 		  xhr.send();
 		  setTimeout(function() {
-			location.replace("index2.html");
+			location.replace("index3.html");
 		  }, 300);
 		  } }
 
@@ -627,7 +764,7 @@ function sairprojeto() {
 		  };
 		  xhr.send();
 		  setTimeout(function() {
-			location.replace("index2.html");
+			location.replace("index3.html");
 		  }, 300);
 		  } }
 </script>
@@ -666,8 +803,8 @@ function sairprojeto() {
         datasets: [
           {
             data: [tarC, tarP],
-            backgroundColor: ["#3F184F", "#1C1F22"],
-            hoverBackgroundColor: ["#3F184F", "#1C1F22"],
+            backgroundColor: ["#000000", "#ffffff"],
+            hoverBackgroundColor: ["#1C1F22", "#1C1F22"],
           },
         ],
       }

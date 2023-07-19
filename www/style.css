@@ -1,29 +1,112 @@
 body {
-	font-family: 'Montserrat', sans-serif;
-	background: #e7e7e7;
+	background-color: #F8F8FF;
 	height: 100vh;
 	overflow: hidden;
-	background-image: url("bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-	overflow: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#bg-video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -1;
+  }
+@media (max-width: 1170px) and (height: 2532px) {
+	.d-flex.align-items-center.justify-content-center {
+	  align-items: flex-start;
 	}
+	.quadrado {
+		width: 90%;
+		height: 2525px;
+	  }
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  nav p {
+    margin: 0 10px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+@keyframes moveBackground {
+	0% { background-position: 0% 0%; }
+	50% { background-position: 100% 100%; }
+	100% { background-position: 0% 0%; }
+}
+
+#quadrado {
+	width: 600px;
+	height: 600px;
+	background-image: url(bg\ \(1\).mp4);
+	background-size: 200%;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+}
+#quadrado.sucesso {
+	background: linear-gradient(rgb(21, 255, 0) 0%, rgb(21, 255, 0) 7%, transparent 7%, transparent 100%);
+}
+
+#quadrado.falha {
+	background: linear-gradient(rgb(255, 0, 0) 0%, rgb(255, 0, 0) 7%, transparent 7%, transparent 100%);
+}
+
 ::-webkit-scrollbar {
 	display: none;
 	}
 @font-face {
-	font-family: 'yungjakes';
-	src: url('YungJakesNewHandwriting-Regular.ttf');
+	font-family: 'floattheboat';
+	src: url('FloatTheBoat-11BB.ttf');
   }
+@font-face {
+	font-family: 'VCROSDMono';
+	src: url('VCROSDMono.ttf');
+  }
+p {
+	font-family: 'VCROSDMono';
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+option {
+		font-family: 'VCROSDMono';
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+p:hover{
+	text-decoration: underline;
+} 
+.espaco{
+	background-color: #16191C;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 h3 {
 	text-align: center;
 	color: #413b3b;
 	text-transform: uppercase;
 	font-size: 80px;
-	font-family: 'yungjakes', cursive;
+	font-family: 'VCROSDMono', cursive;
 }
 h5 {
 	text-align: center;
@@ -33,6 +116,15 @@ h5 {
 	width: 50%;
 	line-height: 1.7;
 }
+.fade-transition {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.fade-transition:not([hidden]) {
+    opacity: 1;
+}
+
 .box {
 	text-align: center;
 	display: inline-block;
@@ -88,7 +180,7 @@ h5 {
 	color: #333;
 }
 .wrapper .close {
-	position: absolute;
+	position: fixed;
 	top: 20px;
 	right: 30px;
 	transition: all 200ms;
@@ -104,6 +196,25 @@ h5 {
 	max-height: 30%;
 	overflow: auto;
 }
+#display img {
+    max-width: 60%;
+    max-height: 60vh;
+    width: auto;
+    height: auto;
+  }
+.sair {
+	position:relative;
+	margin-right: 70px;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	text-align:right;
+	color: #ffffff;
+}
+.sair:hover {
+	color:red;
+	text-decoration: none;
+}
 /*form*/
 
 .container {
@@ -114,39 +225,48 @@ h5 {
 form label {
 	text-transform: uppercase;
 	font-weight: 500;
+	font-family: 'VCROSDMono';
 	letter-spacing: 3px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 input[type=text], select, textarea {
-	width: 100%;
-	padding: 12px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-	margin-top: 6px;
-	margin-bottom: 16px;
-	resize: vertical;
+	font-family: 'VCROSDMono';
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+	align-items: center;
+	text-align: center;
+	width: 25%;
 }
 input[type=password], select, textarea {
-	width: 100%;
-	padding: 12px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-	margin-top: 6px;
-	margin-bottom: 16px;
-	resize: vertical;
+	font-family: 'VCROSDMono';
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+	align-items: center;
+	text-align: center;
+	width: 25%;
 }
 input[type="submit"] {
-	background-color: #413b3b;
-	color: #fff;
-	padding: 15px 50px;
-	border: none;
-	border-radius: 50px;
-	cursor: pointer;
-	font-size: 15px;
-	text-transform: uppercase;
-	letter-spacing: 3px;
+	font-family: 'VCROSDMono';
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+	align-items: center;
+	text-align: center;
+	width: 25%;
 }
+input::placeholder {
+	font-size: 18px;
+	color: rgba(255, 255, 255, 0.6);
+  }
+  
 
 /*blocos*/
 .bar-container {
@@ -195,7 +315,7 @@ input[type="submit"] {
 	color: rgb(255, 255, 255);
 	padding: 15px 35px;
 	border: none;
-	border-radius: 50px;
+	border-radius: 5px;
 	cursor: pointer;
 	font-size: 15px;
 	text-transform: uppercase;
@@ -213,7 +333,7 @@ input[type="submit"] {
 	color: rgb(0, 0, 0);
 	padding: 15px 35px;
 	border: none;
-	border-radius: 50px;
+	border-radius: 5px;
 	cursor: pointer;
 	font-size: 15px;
 	text-transform: uppercase;
@@ -464,35 +584,3 @@ img{
   .CodeMirror {
 	text-align: left;
 }
-
-#loading {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url("bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-	overflow: scroll;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	opacity: 1;
-	z-index: 9999;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  }
-  
-  #loading i {
-	font-size: 40px;
-	color: #333;
-  }
-  
-  .fa-spinner {
-	color: #000; /* define a cor preta para o ícone */
-	-webkit-animation: fa-spin 2s infinite linear; /* adiciona a animação do spinner */
-	animation: fa-spin 2s infinite linear; /* adiciona a animação do spinner */
-  }
-  
