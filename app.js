@@ -49,12 +49,13 @@ const pool = mysql.createPool({ // Use mysql.createPool em vez de mariadb.create
   database: 'b5a0yocqy8nk6zvkxbeo'
 });
 
-pool.connect((err) => {
+pool.getConnection((err, connection) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
     return;
   }
   console.log('Conexão estabelecida com o banco de dados.');
+  connection.release();
 });
 
 app.post('/salvar-conta', function(req, res) {
