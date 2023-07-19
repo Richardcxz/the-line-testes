@@ -149,6 +149,38 @@
 	typeWriter();
 	</script>
 
+<script>
+    // Função para verificar a orientação da tela e ajustar a posição da div "formularios"
+    function ajustarPosicaoFormularios() {
+      var formulariosDiv = document.getElementById("formularios");
+      var windowHeight = window.innerHeight;
+      var windowWidth = window.innerWidth;
+
+      // Verificar se a orientação é vertical e ajustar a posição da div
+      if (windowHeight > windowWidth) {
+        formulariosDiv.style.top = "50%";
+        formulariosDiv.style.transform = "translate(-50%, -50%)";
+        formulariosDiv.style.left = "50%";
+        formulariosDiv.style.position = "fixed";
+      } else {
+        // Caso a orientação não seja vertical, resetar as propriedades para a posição original
+        formulariosDiv.style.top = "40%";
+        formulariosDiv.style.left = "-40%";
+        formulariosDiv.style.transform = "translate(-50%, -50%)";
+        formulariosDiv.style.position = "relative";
+      }
+    }
+
+    // Executar a função de ajuste de posição quando a página carregar
+    window.onload = function() {
+      ajustarPosicaoFormularios();
+    };
+
+    // Executar a função de ajuste de posição quando a tela for redimensionada
+    window.onresize = function() {
+      ajustarPosicaoFormularios();
+    };
+  </script>
 
 <script>
 	function sobreproj() {
