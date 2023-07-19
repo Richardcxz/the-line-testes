@@ -29,22 +29,32 @@ var projtag = "";
 var iscriador = "";
 //
 
+const publicDirectoryPath = path.join(__dirname, 'www');
+
+app.use(express.static(publicDirectoryPath));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, 'index.html'));
 });
 
-const pool = mysql.createPool({
+app.listen(port, () => {
+  console.log(`Servidor está executando na porta ${port}`);
+});
+
+const pool = mysql.createPool({ // Use mysql.createPool em vez de mariadb.createPool
   host: 'b5a0yocqy8nk6zvkxbeo-mysql.services.clever-cloud.com',
   user: 'ukoz6hn5habn25uo',
   password: 'iLjAuwNfnYaQwOWuPP7N',
   port: 3306,
   database: 'b5a0yocqy8nk6zvkxbeo'
 });
-var server = app.listen(8000, function () {
 
-    console.log('Server rodando em http://127.0.0.1:8000/')
-
-})
+connection.connect((err) => {
+  if (err) {
+    console.error('Erro ao conectar ao banco de dados:', err);
+    return;
+  }
+  console.log('Conexão estabelecida com o banco de dados.');
 
 app.post('/salvar-conta', function(req, res) {
   const usucad = req.body.usuario;
