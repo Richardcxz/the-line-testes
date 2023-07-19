@@ -55,6 +55,7 @@ connection.connect((err) => {
     return;
   }
   console.log('Conexão estabelecida com o banco de dados.');
+}
 
 app.post('/salvar-conta', function(req, res) {
   const usucad = req.body.usuario;
