@@ -26,17 +26,22 @@ var projtag = "";
 var iscriador = "";
 //
 
-const pool = mariadb.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '1337',
-  database: 'bdproj'
+app.listen(port, () => {
+  console.log(`Servidor está executando na porta ${port}`);
 });
-var server = app.listen(8000, function () {
-
-    console.log('Server rodando em http://127.0.0.1:8000/')
-
-})
+const connection = mysql.createConnection({
+  host: 'b5a0yocqy8nk6zvkxbeo-mysql.services.clever-cloud.com',
+  user: 'ukoz6hn5habn25uo',
+  password: 'iLjAuwNfnYaQwOWuPP7N',
+  port: 3306,
+  database: 'b5a0yocqy8nk6zvkxbeo'
+});
+connection.connect((err) => {
+  if (err) {
+    console.error('Erro ao conectar ao banco de dados:', err);
+    return;
+  }
+  console.log('Conexão estabelecida com o banco de dados.');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
