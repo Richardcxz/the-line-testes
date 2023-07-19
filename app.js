@@ -1,7 +1,10 @@
-var express = require('express')
-var app = express()
+const express = require('express')
+const app = express()
+const mysql = require('mysql');
+const express = require('express');
+const path = require('path');
+const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
-const mariadb = require('mariadb');
 const cheerio = require('cheerio');
 const { query } = require('express');
 app.use(express.static('www'));
@@ -26,9 +29,14 @@ var projtag = "";
 var iscriador = "";
 //
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
+});
+
 app.listen(port, () => {
   console.log(`Servidor está executando na porta ${port}`);
 });
+
 const connection = mysql.createConnection({
   host: 'b5a0yocqy8nk6zvkxbeo-mysql.services.clever-cloud.com',
   user: 'ukoz6hn5habn25uo',
@@ -36,6 +44,7 @@ const connection = mysql.createConnection({
   port: 3306,
   database: 'b5a0yocqy8nk6zvkxbeo'
 });
+
 connection.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
