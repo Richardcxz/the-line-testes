@@ -150,25 +150,26 @@
 	</script>
 
 <script>
-  function checkOrientation() {
-    if (window.innerHeight > window.innerWidth) {
-      document.getElementById('formularios').classList.add('vertical-orientation');
+  function ajustarPosicaoDiv() {
+    var formulariosDiv = document.getElementById("formularios");
+    var isVertical = window.innerHeight > window.innerWidth;
+
+    if (isVertical) {
+      formulariosDiv.style.top = "20%";
+      formulariosDiv.style.left = "50%";
+      formulariosDiv.style.transform = "translate(-50%, -50%)";
     } else {
-      document.getElementById('formularios').classList.remove('vertical-orientation');
+      formulariosDiv.style.top = "40%";
+      formulariosDiv.style.left = "-40%";
+      formulariosDiv.style.transform = "translate(-50%, -50%)";
     }
   }
 
-  checkOrientation();
+  ajustarPosicaoDiv();
 
-  window.addEventListener('resize', checkOrientation);
+  window.addEventListener("orientationchange", ajustarPosicaoDiv);
 </script>
-<style>
-  .vertical-orientation {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-</style>
+
 
 
 <script>
