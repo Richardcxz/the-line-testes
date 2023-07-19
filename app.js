@@ -46,7 +46,7 @@ var server = app.listen(8000, function () {
 
 })
 
-connection.connect((err) => {
+pool.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
     return;
