@@ -64,33 +64,27 @@ app.post('/salvar-conta', function(req, res) {
   const sencad = req.body.senha;
   console.log(usucad)
   const tag = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
-  pool.getConnection()
-    .then(conn => {
-      conn.query("SELECT COUNT(*) AS count FROM contas WHERE nick = ? OR email = ?", [usucad, emailcad])
-        .then(result => {
-          if (result[0].count > 0) {
-            res.status(500).send('Usuário ou e-mail já cadastrados.');
-            conn.release();
-          } else {
-            conn.query("INSERT INTO contas (nick, nicktag, email, senha) VALUES (?, ?, ?, ?)", [usucad, tag, emailcad, sencad])
-              .then(result => {
-                res.send('Conta salva com sucesso!');
-              })
-              .catch(error => {
-                res.status(500).send('Erro ao salvar a conta no banco de dados.');
-              })
-              .finally(() => {
-                conn.release();
-              });
-          }
-        })
-        .catch(error => {
-          res.status(500).send('Erro ao verificar a existência do usuário ou e-mail no banco de dados.');
-        })
-    })
-    .catch(error => {
-      res.status(500).send('Erro ao se conectar ao banco de dados.');
+  
+  pool.query("SELECT COUNT(*) AS count FROM contas WHERE nick = ? OR email = ?", [usucad, emailcad], (err, result) => {
+    if (err) {
+      res.status(500).send('Erro ao verificar a existência do usuário ou e-mail no banco de dados.');
+      return;
+    }
+
+    if (result[0].count > 0) {
+      res.status(500).send('Usuário ou e-mail já cadastrados.');
+      return;
+    }
+
+    pool.query("INSERT INTO contas (nick, nicktag, email, senha) VALUES (?, ?, ?, ?)", [usucad, tag, emailcad, sencad], (err, result) => {
+      if (err) {
+        res.status(500).send('Erro ao salvar a conta no banco de dados.');
+        return;
+      }
+
+      res.send('Conta salva com sucesso!');
     });
+  });
 });
 
   app.post('/fazer-login', function(req, res) {
