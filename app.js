@@ -49,7 +49,7 @@ const pool = mysql.createPool({ // Use mysql.createPool em vez de mariadb.create
   database: 'b5a0yocqy8nk6zvkxbeo'
 });
 
-connection.connect((err) => {
+pool.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
     return;
